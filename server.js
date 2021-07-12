@@ -4,8 +4,8 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const db = require("./config/keys").mongoURI;
 const path = require("path");
+const handleErrors = require("./middleware/error");
 const app = express();
-
 mongoose
   .connect(db, {
     useNewUrlParser: true,
@@ -21,6 +21,15 @@ mongoose
 app.use(express.json({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use("/api/auth", require("./routes/api/auth"));
+
+app.use("/api/cocktails", require("./routes/api/cocktails"));
+app.use("/api/ingredients", require("./routes/api/ingredients"));
+
+
+
+app.use(handleErrors)
 
 if (process.env.NODE_ENV === "production") {
   //set static folder
