@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const db = require("./config/keys").mongoURI;
 const path = require("path");
+const cookieParser = require('cookie-parser');
 const handleErrors = require("./middleware/error");
 const app = express();
 mongoose
@@ -19,6 +20,7 @@ mongoose
     process.exit(1);
   })
 app.use(express.json({ extended: false }));
+app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
 
