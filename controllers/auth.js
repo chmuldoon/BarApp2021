@@ -10,12 +10,9 @@ exports.register = asyncHandler(async (req, res, next) => {
     email,
     password
   })
-  const token = user.getSignedJwtToken();
+  
+  sendTokenResponse(user, 200, res);
 
-  res.status(200).json({
-    success: true,
-    token
-  })
 });
 
 exports.login = asyncHandler(async (req, res, next) => {
@@ -37,10 +34,46 @@ exports.login = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse("Invalid Credentials", 401))
   }
 
-  const token = user.getSignedJwtToken();
+  sendTokenResponse(user, 200, res);
+});
+
+exports.currentUser = asyncHandler(async (req, res, next) => {
+  const user = await User.findById(req.user.id)
 
   res.status(200).json({
     success: true,
-    token
+    data: user
   })
-});
+})
+exports.logout = asyncHandler(async (req, res, next) => {
+  res.cookie("token", "none", {
+    expires: new Date(Date.now() + 10 * 1000),
+    httpOnly: true
+  })
+  res.status(200).json({
+    success: true,
+    data: {}
+  })
+})
+
+const sendTokenResponse = (user, statusCode, res) => {
+
+  const token = user.getSignedJwtToken()
+
+  const options = {
+    expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
+    httpOnly: true
+  }
+
+  if(process.env.NODE_ENV === 'production'){
+    options.secure = true;
+  }
+
+  res
+    .status(statusCode)
+    .cookie("token", token, options)
+    .json({
+      success: true,
+      token
+    })
+}

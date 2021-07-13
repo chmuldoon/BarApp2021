@@ -29,14 +29,13 @@ const UserSchema = new mongoose.Schema({
   }
 });
 UserSchema.pre("save", async function (next) {
-
-  const salt = await bcrypt.genSalt(10);
-
-  this.password = await bcrypt.hash(this.password, salt);
-
+  if(!this.password){
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+  }
 })
 
-UserSchema.methods.getSignedJwtToken = () => {
+UserSchema.methods.getSignedJwtToken = function () {
   return jwt.sign({ id: this._id }, require("../config/jwt").jwtSecret, {
     expiresIn: "30d"
   })

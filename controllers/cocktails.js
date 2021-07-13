@@ -34,3 +34,4 @@ exports.search = asyncHandler(async (req, res, next) => {
     data: { cocktails, ingredients }
   })
 });
+
