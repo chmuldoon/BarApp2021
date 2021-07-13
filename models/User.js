@@ -36,7 +36,6 @@ UserSchema.pre("save", async function (next) {
 })
 
 UserSchema.methods.getSignedJwtToken = function () {
-  console.log("hit1")
   return jwt.sign({ id: this._id }, require("../config/jwt").jwtSecret, {
     expiresIn: "30d"
   })

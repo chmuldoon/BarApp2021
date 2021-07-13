@@ -6,6 +6,14 @@ const db = require("./config/keys").mongoURI;
 const path = require("path");
 const cookieParser = require('cookie-parser');
 const handleErrors = require("./middleware/error");
+const expressMongoSanitize = require("express-mongo-sanitize");
+const helmet = require("helmet");
+const xss = require("xss-clean");
+const hpp = require("hpp");
+const cors = require("cors");
+
+
+
 const app = express();
 mongoose
   .connect(db, {
@@ -21,6 +29,15 @@ mongoose
   })
 app.use(express.json({ extended: false }));
 app.use(cookieParser());
+
+app.use(expressMongoSanitize())
+app.use(helmet());
+app.use(xss());
+app.use(hpp());
+app.use(cors());
+
+
+
 app.use(passport.initialize());
 app.use(passport.session());
 

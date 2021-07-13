@@ -8,11 +8,12 @@ const { listMaker } = require("../utils/listMaker");
 
 
 exports.getAllIngredients = asyncHandler(async (req, res, next) => {
-  const ingredients = await Ingredient.find();
+  let ingredients = await Ingredient.find();
+  
 
   res.status(200).json({
     success: true,
-    data: ingredients
+    data: ingredients.sort((a, b) => b.cocktails.length - a.cocktails.length)
   })
 });
 exports.getOneIngredient = asyncHandler(async (req, res, next) => {
