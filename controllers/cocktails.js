@@ -12,7 +12,14 @@ exports.getAllCocktails = asyncHandler(async (req, res, next) => {
     data: cocktails
   })
 });
-
+exports.getMyCocktails = asyncHandler(async (req, res, next) => {
+  const user = await User.findById(req.user.id).select("-password");
+  const cocktails = Cocktail.find({_id: { $in: user.cocktails }});
+  res.status(200).json({
+    success: true,
+    data: cocktails
+  })
+})
 exports.getOneCocktail = asyncHandler(async (req, res, next) => {
   const cocktail = await Cocktail.findById(req.params.id);
   if(!cocktail) {
