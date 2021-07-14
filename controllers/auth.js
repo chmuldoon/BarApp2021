@@ -17,7 +17,7 @@ exports.register = asyncHandler(async (req, res, next) => {
 
 exports.login = asyncHandler(async (req, res, next) => {
   const { email, password } = req.body;
-
+  console.log("hit")
   if(!email || !password){
     return next(new ErrorResponse("Please provide email and password", 400))
   }
@@ -27,6 +27,7 @@ exports.login = asyncHandler(async (req, res, next) => {
   if(!user){
     return next(new ErrorResponse("Invalid Credentials", 401))
   }
+  console.log(user)
 
   const passwordMatch = await user.matchPassword(password);
 
@@ -38,8 +39,11 @@ exports.login = asyncHandler(async (req, res, next) => {
 });
 
 exports.currentUser = asyncHandler(async (req, res, next) => {
-  const user = await User.findById(req.user.id)
-
+  let user = await User.findById(req.user.id)
+  if(!user) {
+    user = null;
+  }
+  console.log(user)
   res.status(200).json({
     success: true,
     data: user
