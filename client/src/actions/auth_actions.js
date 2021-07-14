@@ -18,7 +18,7 @@ export const loadUser = () => async (dispatch) => {
     setAuthToken(localStorage.token);
   }
   try {
-    const res = await axios.get("/api/auth");
+    const res = await axios.get("/api/auth/me");
     dispatch({
       type: USER_LOADED,
       payload: res.data,
@@ -44,7 +44,7 @@ export const register = ( email, password ) => async (dispatch) => {
   try {
 
     //makes http request with the body and header
-    const res = await axios.post("/api/users", body, config);
+    const res = await axios.post("/api/auth/register", body, config);
 
     //should return the token
     dispatch({
@@ -76,12 +76,13 @@ export const login = (email, password) => async (dispatch) => {
   const body = JSON.stringify({ email, password });
   try {
     //makes http request with the body and header
-    const res = await axios.post("/api/auth", body, config);
+    const res = await axios.post("/api/auth/login", body, config);
     //should return the token
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data,
     });
+    console.log(res.data)
     dispatch(loadUser());
   } catch (err) {
     const errors = err.response.data.errors;
@@ -106,7 +107,7 @@ export const demoLogin = () => async (dispatch) => {
   const body = JSON.stringify({ email: "demo@demo.com", password: "password" });
   try {
     //makes http request with the body and header
-    const res = await axios.post("/api/auth", body, config);
+    const res = await axios.post("/api/auth/login", body, config);
     //should return the token
     dispatch({
       type: LOGIN_SUCCESS,

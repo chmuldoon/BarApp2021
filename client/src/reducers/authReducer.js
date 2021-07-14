@@ -17,15 +17,18 @@ const initialState = {
 export const authReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case USER_LOADED:
+      debugger
+
       return {
         ...state,
         isAuthenticated: true,
         loading: false,
-        user: payload,
+        user: payload.data,
       };
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
       localStorage.setItem("token", payload.token);
+      debugger
       return {
         ...state,
         ...payload,
