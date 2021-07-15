@@ -16,6 +16,16 @@ exports.getAllIngredients = asyncHandler(async (req, res, next) => {
     data: ingredients.sort((a, b) => b.cocktails.length - a.cocktails.length)
   })
 });
+exports.getMyIngredients = asyncHandler(async (req, res, next) => {
+  const user = await User.findById(req.user.id).select("-password");
+  const ingredients = await Ingredient.find({_id: { $in: user.ingredients }});
+  
+
+  res.status(200).json({
+    success: true,
+    data: ingredients
+  })
+});
 exports.getOneIngredient = asyncHandler(async (req, res, next) => {
   const ingredient = await Ingredient.findById(req.params.id);
   if(!ingredient) {

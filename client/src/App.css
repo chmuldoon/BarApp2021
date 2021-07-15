@@ -30,6 +30,13 @@
 .bg-light-blue {
   background-color: var(--color-light-blue);
 }
+.left-aligned {
+  text-align: left;
+}
+
+.right-aligned {
+  text-align: right;
+}
 
 h1,h2,h3 {
   color: var(--color-seaweed);
@@ -198,4 +205,42 @@ p {
   padding: 16px;
   border-radius: 12px;
   font-weight: 800;
+}
+
+/* Shelf */
+.shelf-display > div {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 40px;
+  grid-row-gap: 40px;
+}
+
+/* Shelf Item */
+
+.shelf-ingredient {
+  background-color: #d0ccdf;
+  width: 200px;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 8px;
+
+}
+.shelf-ingredient .image-wrapper {
+  background-color: var(--color-white);
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.shelf-ingredient h3 {
+  text-transform: capitalize;
+}
+.shelf-ingredient img {
+  width: 100px;
 }

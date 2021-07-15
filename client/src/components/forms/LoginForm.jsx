@@ -1,8 +1,9 @@
 import React, { Fragment, useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login, register } from "../../actions/auth_actions";
+import history from "../../history";
 const LoginForm = ({register, login, version, children, isAuthenticated}) => {
   const [formData, setFormData] = useState({
     email: "",
@@ -15,8 +16,9 @@ const LoginForm = ({register, login, version, children, isAuthenticated}) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     let fn = version === "login" ? login : register
-    fn(email, password).then(() => {
-      return <Redirect to="/cocktails" />;
+    fn(email, password)
+    .then(() => {
+      history.push("/shelf")
     })
   };
 
@@ -56,4 +58,4 @@ const mapStateToProps = (state) => {
   return {
 }};
 
-export default connect(mapStateToProps, { register, login })(LoginForm);
+export default withRouter(connect(mapStateToProps, { register, login })(LoginForm));

@@ -17,8 +17,6 @@ const initialState = {
 export const authReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case USER_LOADED:
-      debugger
-
       return {
         ...state,
         isAuthenticated: true,
@@ -28,7 +26,6 @@ export const authReducer = (state = initialState, { type, payload }) => {
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
       localStorage.setItem("token", payload.token);
-      debugger
       return {
         ...state,
         ...payload,
@@ -47,7 +44,6 @@ export const authReducer = (state = initialState, { type, payload }) => {
         isAuthenticated: false,
         loading: false,
       };
-
     default:
       return state;
   }

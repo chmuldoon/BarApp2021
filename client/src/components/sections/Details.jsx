@@ -1,11 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import DetailItem from '../snippets/DetailItem'
+import Sectional from './Sectional'
 const Details = () => {
   return (
-  
-    <div id="DetailsSection" className="details-section">
-        <div className="pg-max-width full-height"> 
+    <Sectional name="Details Section">
           <DetailItem imgUrl={process.env.PUBLIC_URL + "/icons8-cocktail-shaker-50.png"}>
             <h2>Lorem Ipsum</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt. onsectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
@@ -23,9 +22,7 @@ const Details = () => {
             <Link to="/register">Consectetur adipiscing</Link>
 
           </DetailItem>
-        </div>
-    </div>
-  )
+    </Sectional>)
 }
 
 export default Details
