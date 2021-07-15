@@ -10,6 +10,7 @@ import PrivateRoute from './components/routing/PrivateRoute';
 import { loadUser } from './actions/auth_actions';
 import setAuthToken from './util/setAuthToken';
 import NavBar from './components/sections/NavBar';
+import ShelfPage from './components/pages/ShelfPage';
 function App() {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
@@ -22,6 +23,9 @@ function App() {
       <NavBar/>
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/register" component={LoginPage} />
+        <Switch>
+          <PrivateRoute exact path="/shelf" component={ShelfPage} />
+        </Switch>
 
 
     </div>

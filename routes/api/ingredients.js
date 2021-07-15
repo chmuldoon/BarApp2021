@@ -1,10 +1,10 @@
 const express = require("express");
-const { getAllIngredients, getOneIngredient, getIngredientsByCocktail, addIngredientToShelf, removeIngredientToShelf } = require("../../controllers/ingredients");
+const { getAllIngredients, getMyIngredients, getOneIngredient, getIngredientsByCocktail, addIngredientToShelf, removeIngredientToShelf } = require("../../controllers/ingredients");
 const { protect } = require("../../middleware/auth");
 const router = express.Router();
 
 router.route("/")
-  .get(getAllIngredients)
+  .get(protect, getMyIngredients)
 
 router.route("/:id")
   .get(getOneIngredient)

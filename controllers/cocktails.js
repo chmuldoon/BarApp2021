@@ -14,7 +14,7 @@ exports.getAllCocktails = asyncHandler(async (req, res, next) => {
 });
 exports.getMyCocktails = asyncHandler(async (req, res, next) => {
   const user = await User.findById(req.user.id).select("-password");
-  const cocktails = Cocktail.find({_id: { $in: user.cocktails }});
+  const cocktails = await Cocktail.find({_id: { $in: user.cocktails }});
   res.status(200).json({
     success: true,
     data: cocktails
