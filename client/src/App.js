@@ -16,7 +16,7 @@ function App() {
     setAuthToken(localStorage.token);
   }
   useEffect(() => {
-    // store.dispatch(loadUser());
+    store.dispatch(loadUser());
   }, [store]);
   return (
     <div className="App">

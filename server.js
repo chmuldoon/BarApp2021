@@ -45,6 +45,8 @@ app.use("/api/auth", require("./routes/api/auth"));
 
 app.use("/api/cocktails", require("./routes/api/cocktails"));
 app.use("/api/ingredients", require("./routes/api/ingredients"));
+app.use("/api/search", require("./routes/api/search"));
+
 
 
 

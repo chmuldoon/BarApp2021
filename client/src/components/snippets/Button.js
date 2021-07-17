@@ -8,7 +8,7 @@ const Button = ({ hrefUrl = null, children, classes = "", fn = null }) => {
       </div>
     </Link>)
   } else {
-    return (<div className={"my-btn " + classes} onClick={fn}>
+    return (<div style={{cursor: "pointer"}} className={"my-btn " + classes} onClick={fn}>
       {children}
     </div>)
   }

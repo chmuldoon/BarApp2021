@@ -5,9 +5,9 @@ import Button from '../snippets/Button'
 import ShelfIngredient from '../snippets/ShelfIngredient'
 import Sectional from './Sectional'
 const Shelf = ({userIngredients, fetchMyIngredients, loading}) => {
-  useEffect(() => {
-    fetchMyIngredients()
-  }, [])
+  // useEffect(() => {
+  //   fetchMyIngredients()
+  // }, [])
   const renderUserIngredients = () => {
     return userIngredients.map(ing => {
       return <ShelfIngredient ingredient={ing}/>
