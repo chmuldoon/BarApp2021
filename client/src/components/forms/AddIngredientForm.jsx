@@ -7,21 +7,26 @@ const AddIngredientForm = ({ search_ingredients, currentUser}) => {
     current_ingredient: null
   })
   const { search_term, current_ingredient } = formData;
+
   const onTermChange = e => {
     return setFormData({
       ...formData,
       search_term: e.target.value
     })
   }
+
   const renderIngredientsByTerm = () => {
     if(search_term.trim().length < 1){
       return null
     }
-    debugger
     const ingToRender = search_ingredients.filter(el => !currentUser.ingredients.includes(el._id));
-    const filteredByTerm = ingToRender.filter(el => el.name.includes(search_term.trim()));
-    return filteredByTerm.slice(0,9).map(el => {
+    const filteredByTerm = ingToRender.filter(el => el.name.includes(search_term.trim())).sort((a, b) => a.name - b.name );
+    const frontSection = filteredByTerm.filter(el => el.name.indexOf(search_term) === 0)
+    const backSection = filteredByTerm.filter(el => el.name.indexOf(search_term) !== 0)
+    const finalList = frontSection.concat(backSection)
+    return finalList.slice(0,9).map(el => { 
       return (
+
         <p>{el.name}</p>
       )
     })
