@@ -1,9 +1,10 @@
 const { OPEN_MODAL, CLOSE_MODAL } = require("./types");
 
-export const openModal = (id) => (dispatch) => {
+export const openModal = (component) => (dispatch) => {
+  debugger
   dispatch({
     type: OPEN_MODAL,
-    payload: { modal_id: id }
+    payload: { component }
   })
 }
 export const closeModal = (e) => (dispatch) => {
