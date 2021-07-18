@@ -1,4 +1,4 @@
-const { INGREDIENT_ERROR, GET_USER_INGREDIENTS } = require("../actions/types");
+const { INGREDIENT_ERROR, GET_USER_INGREDIENTS, UPDATE_SHELF_ING } = require("../actions/types");
 const initialState = {
   ingredients: [],
   loading: true,
@@ -17,6 +17,15 @@ export const ingredientsReducer = (state = initialState, { type, payload }) => {
         loading: false,
         ingredients: []
       }
+    case UPDATE_SHELF_ING:
+
+      const newList = state.ingredients.concat([payload]);
+      const newState = {
+        ...state,
+        ingredients: newList,
+        loading: false
+      }
+      return newState;
     default:
       return state
   }

@@ -6,7 +6,7 @@ const Modal = ({closeModal, modal_id, children, id}) => {
   
   if(modal_id && modal_id === id){
     return (
-    <div id={id} onClick={(e) => closeModal(e)} className={"modal-outer activated"}>
+    <div id={id} onClick={(e) => closeModal(e)} className={"modal-outer modal-closer activated"}>
       <div className="modal-inner">
         {children}
       </div>

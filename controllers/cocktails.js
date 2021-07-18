@@ -34,8 +34,17 @@ exports.getOneCocktail = asyncHandler(async (req, res, next) => {
 
 });
 exports.search = asyncHandler(async (req, res, next) => {
-  let cocktails = await Cocktail.find({}).select("-glass -ingredients -instructions -measurements -using -using2 -__v");
-  let ingredients = await Ingredient.find({}).select("_id name img cocktails");
+  let cocktailList = await Cocktail.find({}).select("-glass -ingredients -instructions -measurements -using -using2 -__v");
+  let ingredientList = await Ingredient.find({}).select("_id name img ");
+  let cocktails = {};
+  let ingredients = {};
+  for(let i = 0; i < cocktailList.length; i++){
+    cocktails[cocktailList[i]._id] = cocktailList[i];
+  }
+  for(let i = 0; i < ingredientList.length; i++){
+    ingredients[ingredientList[i]._id] = ingredientList[i];
+  }
+
   res.status(200).json({
     success: true,
     data: { cocktails, ingredients }

@@ -12,6 +12,10 @@ export const INGREDIENT_ERROR = "INGREDIENT_ERROR";
 export const OPEN_MODAL = "OPEN_MODAL";
 export const CLOSE_MODAL = "CLOSE_MODAL";
 export const FETCH_SEARCH_ITEMS = "FETCH_SEARCH_ITEMS";
+export const UPDATE_SHELF_USER = "UPDATE_SHELF_USER"
+export const UPDATE_SHELF_ING = "UPDATE_SHELF_ING";
+;
+
 
 
 
