@@ -4,7 +4,8 @@ import { USER_LOADED,
         REGISTER_FAIL,
         REGISTER_SUCCESS,
         AUTH_ERROR,
-        LOGOUT
+        LOGOUT,
+        UPDATE_SHELF_USER
       } from "../actions/types";
 const initialState = {
   token: localStorage.getItem("token"),
@@ -23,6 +24,17 @@ export const authReducer = (state = initialState, { type, payload }) => {
         loading: false,
         user: payload.data,
       };
+    case UPDATE_SHELF_USER:
+      const newList = state.user.ingredients.concat([payload._id]);
+      debugger
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          ingredients: newList
+        },
+        loading: false
+      }
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
       localStorage.setItem("token", payload.token);

@@ -8,7 +8,7 @@ export const openModal = (id) => (dispatch) => {
 }
 export const closeModal = (e) => (dispatch) => {
   e.stopPropagation()
-  if(e.target.classList.contains("modal-outer")){
+  if(e.target.classList.contains("modal-closer")){
     dispatch({
       type: CLOSE_MODAL,
       payload: { }

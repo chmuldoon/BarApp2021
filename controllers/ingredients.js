@@ -59,19 +59,17 @@ exports.addIngredientToShelf = asyncHandler(async (req, res, next) => {
   let user = await User.findById(req.user.id)
   let newIngredientsList = user.ingredients.concat(req.params.id);
 
-  let newCocktailList = await listMaker(newIngredientsList, user.mustHave);
 
   user.ingredients = newIngredientsList;
-  user.cocktails = newCocktailList;
   await user.save();
   
+  let ingredient = await Ingredient.findById(req.params.id);
 
-  let cocktails = await Cocktail.find({ _id: { $in: user.cocktails } });
 
    res.status(200).json({
     success: true,
     data: {
-      cocktails, user
+     user, ingredient
     }
   })
 });

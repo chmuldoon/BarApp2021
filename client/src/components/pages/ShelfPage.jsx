@@ -13,7 +13,7 @@ const ShelfPage = ({fetchMyIngredients, fetchSearchItems}) => {
     fetchSearchItems()
   }, [])
   return (
-    <div>
+    <div className="shelf-page">
       <ShelfInfo/>
       <Shelf />
       <Modal id="add-shelf-modal">
