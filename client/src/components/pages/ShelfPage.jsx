@@ -16,9 +16,9 @@ const ShelfPage = ({fetchMyIngredients, fetchSearchItems}) => {
     <div className="shelf-page">
       <ShelfInfo/>
       <Shelf />
-      <Modal id="add-shelf-modal">
+      {/* <Modal id="add-shelf-modal">
         <AddIngredientForm/>
-      </Modal>
+      </Modal> */}
     </div>
   )
 }

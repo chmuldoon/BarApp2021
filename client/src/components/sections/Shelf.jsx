@@ -10,7 +10,7 @@ const Shelf = ({userIngredients, fetchMyIngredients, loading}) => {
   // }, [])
   const renderUserIngredients = () => {
     return userIngredients.map(ing => {
-      return <ShelfIngredient ingredient={ing}/>
+      return <ShelfIngredient key={`shelf-ing-${ing._id}`} ingredient={ing}/>
     })
   }
   return (

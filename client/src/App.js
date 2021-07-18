@@ -11,6 +11,7 @@ import { loadUser } from './actions/auth_actions';
 import setAuthToken from './util/setAuthToken';
 import NavBar from './components/sections/NavBar';
 import ShelfPage from './components/pages/ShelfPage';
+import Modal from './components/snippets/Modal';
 function App() {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
@@ -26,6 +27,7 @@ function App() {
         <Switch>
           <PrivateRoute exact path="/shelf" component={ShelfPage} />
         </Switch>
+        <Modal />
 
 
     </div>

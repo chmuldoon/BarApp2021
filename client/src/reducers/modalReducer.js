@@ -1,7 +1,7 @@
 const { OPEN_MODAL, CLOSE_MODAL } = require("../actions/types");
 const initialState = {
   loading: true,
-  modal_id: null
+  component: null,
 }
 
 export const modalReducer = (state = initialState, { type, payload}) => {
@@ -13,7 +13,10 @@ export const modalReducer = (state = initialState, { type, payload}) => {
         loading: false
       };
     case CLOSE_MODAL:
-      return initialState;
+      return {
+        component: null,
+        loading: false,
+      }
     default:
       return state;
   }
