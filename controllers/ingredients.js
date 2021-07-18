@@ -95,21 +95,15 @@ exports.removeIngredientToShelf = asyncHandler(async (req, res, next) => {
     user.mustHave = newMustHaveList
   }
 
-  let newCocktailList = await listMaker(
-    newIngredientsList,
-    user.mustHave
-  );
 
   user.ingredients = newIngredientsList;
-  user.cocktails = newCocktailList;
   await user.save();
-  
-  let cocktails = await Cocktail.find({ _id: { $in: user.cocktails } });
+  const ingredient = await Ingredient.findById(req.params.id);
 
   res.status(200).json({
   success: true,
   data: {
-    cocktails, user
+    user, ingredient
   }
 })
 });
