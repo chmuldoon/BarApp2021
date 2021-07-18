@@ -25,8 +25,13 @@ export const authReducer = (state = initialState, { type, payload }) => {
         user: payload.data,
       };
     case UPDATE_SHELF_USER:
-      const newList = state.user.ingredients.concat([payload._id]);
       debugger
+      let newList;
+      if(payload.remove) {
+        newList = state.user.ingredients.filter(el => el !== payload.ingredient._id)
+      } else {
+        newList = state.user.ingredients.concat([payload.ingredient._id]);
+      }
       return {
         ...state,
         user: {

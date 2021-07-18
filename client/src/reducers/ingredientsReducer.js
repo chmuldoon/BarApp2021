@@ -18,8 +18,13 @@ export const ingredientsReducer = (state = initialState, { type, payload }) => {
         ingredients: []
       }
     case UPDATE_SHELF_ING:
-
-      const newList = state.ingredients.concat([payload]);
+      let newList
+      debugger
+      if(payload.remove){
+        newList = state.ingredients.filter(el => el._id !== payload.ingredient._id)
+      }else{
+        newList = state.ingredients.concat([payload.ingredient]);
+      }
       const newState = {
         ...state,
         ingredients: newList,
