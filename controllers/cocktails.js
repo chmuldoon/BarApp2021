@@ -3,6 +3,7 @@ const Cocktail = require("../models/Cocktail");
 const Ingredient = require("../models/Ingredient");
 const User = require("../models/User");
 const ErrorResponse = require("../utils/errorResponse");
+const { intersection } = require("lodash")
 
 exports.getAllCocktails = asyncHandler(async (req, res, next) => {
   const cocktails = await Cocktail.find();
@@ -14,10 +15,24 @@ exports.getAllCocktails = asyncHandler(async (req, res, next) => {
 });
 exports.getMyCocktails = asyncHandler(async (req, res, next) => {
   const user = await User.findById(req.user.id).select("-password");
-  const cocktails = await Cocktail.find({_id: { $in: user.cocktails }});
+  let cocktails = await Cocktail.find({_id: { $in: user.cocktails }});
+  const userIngredients = user.ingredients.map(el => String(el))
+
+  const commonIngCount = (ingredients) => {
+    ingredients = ingredients.map(el => String(el));
+    return intersection(userIngredients, ingredients).length
+  }
+  let shortenedList = (cocktails) => {
+    return cocktails.filter(cocktail => {
+    return commonIngCount(cocktail.using2) > 1 ||  
+      (commonIngCount(cocktail.using2) / cocktail.using2.length) >= .5;
+    }).sort((a, b) => ((commonIngCount(b.using2)) / b.using.length) - (commonIngCount(a.using2) / a.using2.length))
+  }
+  
+  
   res.status(200).json({
     success: true,
-    data: cocktails
+    data: shortenedList(cocktails)
   })
 })
 exports.getOneCocktail = asyncHandler(async (req, res, next) => {

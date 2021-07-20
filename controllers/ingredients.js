@@ -61,6 +61,9 @@ exports.addIngredientToShelf = asyncHandler(async (req, res, next) => {
 
 
   user.ingredients = newIngredientsList;
+  let newCocktailList = await listMaker(user.ingredients);
+  user.cocktails = newCocktailList
+
   await user.save();
   
   let ingredient = await Ingredient.findById(req.params.id);
@@ -92,13 +95,16 @@ exports.removeIngredientToShelf = asyncHandler(async (req, res, next) => {
           newMustHaveList.indexOf(req.params.id) + 1
         )
       );
-    user.mustHave = newMustHaveList
+    user.mustHave = newMustHaveList;
   }
 
 
   user.ingredients = newIngredientsList;
+  let newCocktailList = await listMaker(user.ingredients);
+  user.cocktails = newCocktailList
+
   await user.save();
-  const ingredient = await Ingredient.findById(req.params.id);
+  const ingredient = await Ingredient.findById(req.params.id)
 
   res.status(200).json({
   success: true,

@@ -8,9 +8,11 @@ const Cocktail = mongoose.model("cocktail");
 async function _userCocktails(list) {
   if (list.length == 0) return [];
   let output = [];
+
   // console.log(list)
   let objs = await Ingredient.find({ _id: { $in: list } });
   let cocktails = objs.map((i) => i.cocktails);
+
   cocktails.forEach((c) => {
     output = output.concat(c);
   });

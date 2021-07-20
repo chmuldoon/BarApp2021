@@ -12,6 +12,7 @@ import setAuthToken from './util/setAuthToken';
 import NavBar from './components/sections/NavBar';
 import ShelfPage from './components/pages/ShelfPage';
 import Modal from './components/snippets/Modal';
+import CocktailPage from './components/pages/CocktailPage';
 function App() {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
@@ -26,10 +27,10 @@ function App() {
         <Route exact path="/register" component={LoginPage} />
         <Switch>
           <PrivateRoute exact path="/shelf" component={ShelfPage} />
+          <PrivateRoute exact path="/cocktails" component={CocktailPage} />
+
         </Switch>
         <Modal />
-
-
     </div>
   );
 }
