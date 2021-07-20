@@ -14,3 +14,10 @@ export const fetchUserCocktails = () => async (dispatch) => {
     })
   }
 }
+export const formCocktailUrl = (cocktail) => {
+  if(cocktail.userMade){
+    return cocktail.photo
+  }else{
+    return `https://www.thecocktaildb.com/images/media/drink/${cocktail.photo}`;
+  }
+}
