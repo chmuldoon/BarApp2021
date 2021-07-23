@@ -127,6 +127,12 @@ export const demoLogin = () => async (dispatch) => {
   }
 };
 //Logout
-export const logout = () => (dispatch) => {
-  dispatch({ type: LOGOUT });
+export const logout = () => async (dispatch) => {
+
+  try {
+    const res = await axios.get("/logout");
+    dispatch({ type: LOGOUT });
+  } catch (error) {
+    dispatch({ type: LOGOUT });
+  }
 };

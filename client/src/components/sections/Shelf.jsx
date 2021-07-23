@@ -9,7 +9,12 @@ const Shelf = ({userIngredients, fetchMyIngredients, loading}) => {
   //   fetchMyIngredients()
   // }, [])
   const renderUserIngredients = () => {
-    return userIngredients.map(ing => {
+    const sortedUserIngredients = userIngredients.sort((a, b) => {
+    var textA = a.name.toUpperCase();
+    var textB = b.name.toUpperCase();
+    return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+  })
+    return sortedUserIngredients.map(ing => {
       return <ShelfIngredient key={`shelf-ing-${ing._id}`} ingredient={ing}/>
     })
   }
