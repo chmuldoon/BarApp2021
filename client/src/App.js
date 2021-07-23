@@ -13,6 +13,7 @@ import NavBar from './components/sections/NavBar';
 import ShelfPage from './components/pages/ShelfPage';
 import Modal from './components/snippets/Modal';
 import CocktailPage from './components/pages/CocktailPage';
+import IndividualCocktail from './components/pages/IndividualCocktail';
 function App() {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
@@ -28,6 +29,8 @@ function App() {
         <Switch>
           <PrivateRoute exact path="/shelf" component={ShelfPage} />
           <PrivateRoute exact path="/cocktails" component={CocktailPage} />
+          <PrivateRoute exact path="/cocktails/:id" component={IndividualCocktail} />
+
 
         </Switch>
         <Modal />
