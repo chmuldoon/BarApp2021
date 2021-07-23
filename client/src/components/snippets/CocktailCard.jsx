@@ -16,7 +16,8 @@ const CocktailCard = ({ shelf, cocktail}) => {
         <div className="cocktail-link">
           <Button 
             classes="bg-lavendar"
-            hrefUrl={`/cocktails/${cocktail._id}`}>
+            hrefUrl={`/cocktails/${cocktail._id}`}
+            pageId={cocktail._id}>
               Learn More
           </Button>
         </div>
