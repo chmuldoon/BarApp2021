@@ -5,7 +5,7 @@ import CocktailCard from '../snippets/CocktailCard'
 const Cocktails = ({ cocktails, loading, currentUser }) => {
   const renderCocktails = () => {
     return cocktails.map(cocktail => {
-      return <CocktailCard cocktail={cocktail}/>
+      return <CocktailCard shelf={currentUser.ingredients} cocktail={cocktail}/>
     })
   }
   return (

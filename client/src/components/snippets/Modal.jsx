@@ -2,8 +2,6 @@ import React, { Fragment } from 'react'
 import { connect } from 'react-redux';
 import { closeModal } from '../../actions/modal_actions';
 const Modal = ({closeModal, modal_id, component}) => {
-  
-  
   if(component){
     return (
     <div  onClick={(e) => closeModal(e)} className={"modal-outer modal-closer activated"}>
