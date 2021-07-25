@@ -425,7 +425,7 @@ p {
   border-radius: 12px;
   z-index: 2;
 }
-.cocktail-card:hover img {
+.cocktail-card:not(.cocktail-card.loading):hover img {
   width: 100%;
   transition: .8s;
   border-bottom-left-radius: 0;
@@ -444,19 +444,21 @@ p {
   transition: .8s;
 
 }
-.cocktail-card:hover .cocktail-information {
+.cocktail-card:not(.cocktail-card.loading):hover .cocktail-information {
   width: 100%;
   transition: .8s;
 }
 .cocktail-information .content {
   text-align: left;
 }
+.individual-cocktail .cocktail-header ul,
 .cocktail-card ul {
   list-style: none;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
 }
+.individual-cocktail .cocktail-header li,
 .cocktail-card li { 
   text-transform: capitalize;
   color: var(--color-white);
@@ -466,6 +468,7 @@ p {
   border-radius: 12px;
   margin-bottom: 8px;
 }
+.individual-cocktail .cocktail-header li.has-ingredient,
 .cocktail-card li.has-ingredient { 
   background-color: var(--color-seaweed);
 }
@@ -477,12 +480,14 @@ p {
   background-color: var(--color-seaweed);
   border-top-left-radius: 12px;
   font-weight: 600;
+  top: 0;
+  left: 0;
 }
 .cocktail-card .my-btn {
   display: none;
   margin-top: 48px;
 }
-.cocktail-card:hover .my-btn {
+.cocktail-card:not(.cocktail-card.loading):hover .my-btn {
   display: block;
   transition: .8s;
 }
@@ -494,6 +499,7 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
+  top:0;
 }
 @media(max-width:1080px){
   .cocktail-display > div {
@@ -510,4 +516,16 @@ p {
   .cocktail-card {
     width: 100%;
   }
+}
+
+/* individual cocktail page */
+
+.individual-cocktail .cocktail-header {
+  display: flex;
+  justify-content: space-between;
+}
+.individual-cocktail .cocktail-header img{
+  border-radius: 20px;
+  height: 400px;
+  object-fit: cover;
 }
