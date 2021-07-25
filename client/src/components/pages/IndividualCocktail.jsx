@@ -15,7 +15,7 @@ const IndividualCocktail = ({match, formCocktailUrl, fetchCocktail,resetCocktail
       return resetCocktail()
     }
   },[match ])
-  debugger
+  
   if(cocktail) {
     return (<Sectional name="Individual Cocktail">
 
