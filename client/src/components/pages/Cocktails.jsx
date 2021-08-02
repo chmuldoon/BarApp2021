@@ -2,10 +2,17 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Sectional from '../sections/Sectional'
 import CocktailCard from '../snippets/CocktailCard'
+import LazyComponent from '../snippets/LazyComponent'
 const Cocktails = ({ cocktails, loading, currentUser }) => {
   const renderCocktails = () => {
     return cocktails.map(cocktail => {
-      return <CocktailCard shelf={currentUser.ingredients} cocktail={cocktail}/>
+      return <LazyComponent
+        lazy={<CocktailCard shelf={currentUser.ingredients} cocktail={cocktail}/>}
+        loader={<div>Loading</div>}
+      />
+      
+      
+      
     })
   }
   return (

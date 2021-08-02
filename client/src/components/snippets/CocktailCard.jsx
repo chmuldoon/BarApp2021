@@ -1,8 +1,8 @@
 import React, { Fragment, useState } from 'react'
 import { Link } from "react-router-dom";
 import Button from './Button';
-const CocktailCard = ({ shelf, cocktail}) => {
-  const [loading, setLoading] = useState(true)
+const CocktailCard = ({ shelf, cocktail, loaded, setLoaded}) => {
+  // const [loading, setLoading] = useState(true)
   const ingredientCount = cocktail.using2.filter(el => shelf.includes(el)).length
   const ingredientList  = (<ul>
         {cocktail.using.map((el, i) => {
@@ -11,10 +11,10 @@ const CocktailCard = ({ shelf, cocktail}) => {
       </ul>)
   return (<Fragment>
 
-    <div className={"cocktail-card " + (loading ? "loading" : "")}>
+    <div className={"cocktail-card"}>
       <div className="img-wrapper">
         <div className="img-container">
-          <img onLoad={() => setLoading(false)} loading="lazy" alt="" src={cocktail.userMade ? cocktail.photo : `https://www.thecocktaildb.com/images/media/drink/${cocktail.photo}`} />
+          <img onLoad={() => setLoaded(!loaded)} loading="lazy" alt="" src={cocktail.userMade ? cocktail.photo : `https://www.thecocktaildb.com/images/media/drink/${cocktail.photo}`} />
         </div>
         <div className="ingredient-fraction">{ingredientCount} / {cocktail.using2.length}</div>
         <div className="cocktail-link">
