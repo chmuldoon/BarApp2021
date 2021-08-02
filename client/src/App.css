@@ -258,19 +258,25 @@ p {
   position: relative;;
 }
 .remove-shelf-ingredient {
-  display: none;
-  position: absolute;
-  top: 20px;
-  right: 20px;
+    display: none;
+    position: absolute;
+    top: -10px;
+    height: 20px;
+    width: 20px;
+    right: -10px !important;
+    padding: 10px;
+    background-color: white;
+    right: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
 }
 .shelf-ingredient:hover .remove-shelf-ingredient,
 .shelf-ingredient:focus .remove-shelf-ingredient {
-  display: block;
+  display: flex;
 }
-.remove-ingredient-modal {
-  padding: 20px;
-  background-color: white;;
-}
+
 @media(max-width: 767px) {
   .shelf-ingredient{
     margin-left: auto;
@@ -314,6 +320,7 @@ p {
 }
 
 /* Add Ingredient form */
+.remove-ingredient-modal,
 .add-ingredient-form {
   border: 1px solid lightgray;
   border-radius: 12px;
@@ -516,6 +523,18 @@ p {
   .cocktail-card {
     width: 100%;
   }
+}
+.hidden {
+  display: none;
+}
+/* remove ingredient */
+.remove-ingredient-modal .button-wrapper { 
+  display: flex;
+  justify-content: center;;
+
+}
+.remove-ingredient-modal .button-wrapper .my-btn {
+  margin: 20px 10px 0;
 }
 
 /* individual cocktail page */
