@@ -1,7 +1,6 @@
 import React, { cloneElement, Fragment, useState } from 'react'
 const LazyComponent = ({lazy, loader}) => {
   const [loaded, setLoaded] = useState(false);
-  debugger
   return (
     <div>
       <div className={loaded ? "" : "hidden"}>
