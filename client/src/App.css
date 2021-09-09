@@ -220,6 +220,15 @@ p {
   border-radius: 12px;
   font-weight: 800;
 }
+input.my-btn {
+  color: white;
+  width: fit-content;
+  padding: 16px;
+  border-radius: 12px;
+  font-weight: 800;
+  background-color: var(--color-lavendar);
+  border: 1px solid  var(--color-lavendar);
+}
 
 /* Shelf */
 .shelf-display > div {
@@ -432,6 +441,11 @@ p {
   border-radius: 12px;
   z-index: 2;
 }
+.cocktail-card.loading-card img {
+    height: 250px;
+    background: var(--color-light-blue-gray);
+}
+
 .cocktail-card:not(.cocktail-card.loading):hover img {
   width: 100%;
   transition: .8s;
@@ -479,6 +493,13 @@ p {
 .cocktail-card li.has-ingredient { 
   background-color: var(--color-seaweed);
 }
+.cocktail-card.loading-card h3 {
+  color: var(--color-black)
+}
+.loading-ing
+{
+  background-color: var(--color-black) !important; 
+}
 .ingredient-fraction {
   z-index: 3;
   position: absolute;
@@ -525,7 +546,8 @@ p {
   }
 }
 .hidden {
-  display: none;
+  opacity: 0;
+  position: absolute;
 }
 /* remove ingredient */
 .remove-ingredient-modal .button-wrapper { 
@@ -547,4 +569,55 @@ p {
   border-radius: 20px;
   height: 400px;
   object-fit: cover;
+}
+
+/* login */
+.login-section {
+  border-radius: 12px;
+  background-color: white;
+  border: 1px solid var(--color-light-blue);
+  max-width: 400px;
+  margin: 0 auto;
+}
+.login-tabs {
+  display: flex;
+  justify-content: space-evenly;
+}
+.login-tabs > div {
+  background-color: var(--color-light-blue-gray);
+  width:50%;
+}
+.login-tabs .login-tab {
+  border-top-left-radius: 12px;
+}
+.login-tabs .register-tab {
+  border-top-right-radius: 12px;
+}
+.login-tabs > div.active {
+  background-color: white;
+}
+.login-section .form-container {
+  width: fit-content;
+  display: none;
+}
+.login-section .form-container.active {
+  display: block;
+}
+.login-section .forms-wrapper .form {
+  width: max-content;
+  margin: 0 auto;
+}
+.login-section  .form-group {
+  text-align: left;
+}
+.form-group input {
+  border: 0;
+  background-color: var(--color-light-blue-gray);
+  color: var(--color-black);
+  padding: 12px;
+  border-radius: 12px;
+}
+.form-group input::placeholder {
+  color: white;
+  font-weight:bold;
 }
